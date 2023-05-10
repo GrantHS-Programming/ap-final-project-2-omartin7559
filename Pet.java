@@ -16,6 +16,7 @@ public class Pet {
     private boolean faint;
     private boolean beforeAttack;
     private boolean hurt;
+    private int position;
 
     public Pet(String name, int level, int tier, int attack, int health, String ability, String abilityTime){
         this.name = name;
@@ -36,9 +37,12 @@ public class Pet {
     public int getSellValue(){
         return sellValue;
     }
+    public void setPosition(int newPosition){position = newPosition;}
+    public int getPosition(){return position;}
     public String getAbility(){
         return ability;
     }
+    public String getAbilityTime(){return abilityTime;}
     public String getName(){
         return name;
     }
@@ -97,8 +101,8 @@ public class Pet {
     public ArrayList getTeam(){
         return team;
     }
-    public void addPet(Pet pet){
-        team.add(pet);
+    public void addPet(int index, Pet pet){
+        team.add(index, pet);
     }
     public void removePet(Pet pet){
         team.remove(pet);
