@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Pet {
     private ArrayList<Pet> team = new ArrayList<>();
+    private ArrayList<Pet> shop = new ArrayList<>();
     private String ability;
     private int level;
     private String name;
@@ -11,6 +12,7 @@ public class Pet {
     private int attack;
     private int tier;
     private String abilityTime;
+    private boolean sell;
     private boolean endTurn ;
     private boolean startTurn;
     private boolean faint;
@@ -34,6 +36,7 @@ public class Pet {
     public int getCost(){
         return cost;
     }
+    public void setCost(int discount){cost = cost - discount;}
     public int getSellValue(){
         return sellValue;
     }
@@ -68,6 +71,13 @@ public class Pet {
         return "This pet is a level " + level +" tier "+ tier + " " + name + " with base stats " +
                 attack + "/" + health;
     }
+    public void sell(Pet pet){
+        team.remove(pet);
+        sell = true;
+    }
+    public boolean getSell(){
+        return sell;
+    }
     public void setEndTurn(){
         endTurn = true;
     }
@@ -101,11 +111,35 @@ public class Pet {
     public ArrayList getTeam(){
         return team;
     }
+    public ArrayList getShop(){
+        return shop;
+    }
+    public int getShopSize(){
+        return shop.size();
+    }
+    public int getTeamSize(){
+        return team.size();
+    }
+    public void printTeam(){
+        System.out.println(team);
+    }
+    public void printShop(){
+        System.out.println(shop);
+    }
     public void addPet(int index, Pet pet){
         team.add(index, pet);
     }
+    public void addPet(Pet pet){
+        team.add(pet);
+    }
     public void removePet(Pet pet){
         team.remove(pet);
+    }
+    public void addShopPet(Pet pet){
+        shop.add(pet);
+    }
+    public void removeShopPet(Pet pet){
+        shop.remove(pet);
     }
     public void activateAbility(){
         System.out.println("");

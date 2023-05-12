@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class Ant extends Pet{
     public Ant(String name, int level, int tier, int attack, int health, String ability, String abilityTime) {
         super(name, level, tier, attack, health, ability, abilityTime);
