@@ -3,6 +3,12 @@ import java.util.ArrayList;
 public class Pet {
     private ArrayList<Pet> team = new ArrayList<>();
     private ArrayList<Pet> shop = new ArrayList<>();
+    private ArrayList<Pet> tierOnes = new ArrayList<>();
+    private ArrayList<Pet> tierTwos = new ArrayList<>();
+    private ArrayList<Pet> tierThrees = new ArrayList<>();
+    private ArrayList<Pet> tierFours = new ArrayList<>();
+    private ArrayList<Pet> tierFives = new ArrayList<>();
+    private ArrayList<Pet> tierSixes = new ArrayList<>();
     private String ability;
     private int level;
     private String name;
@@ -19,6 +25,7 @@ public class Pet {
     private boolean beforeAttack;
     private boolean hurt;
     private int position;
+    private Perk perk;
 
     public Pet(String name, int level, int tier, int attack, int health, String ability, String abilityTime){
         this.name = name;
@@ -68,8 +75,7 @@ public class Pet {
         health += newHealth;
     }
     public String toString(){
-        return "This pet is a level " + level +" tier "+ tier + " " + name + " with base stats " +
-                attack + "/" + health;
+        return "This pet is a level " + level +" tier "+ tier + " " + name + " with base stats " + attack + "/" + health;
     }
     public void sell(Pet pet){
         team.remove(pet);
@@ -108,10 +114,10 @@ public class Pet {
     public boolean getHurt(){
         return hurt;
     }
-    public ArrayList getTeam(){
+    public ArrayList<Pet> getTeam(){
         return team;
     }
-    public ArrayList getShop(){
+    public ArrayList<Pet> getShop(){
         return shop;
     }
     public int getShopSize(){
@@ -144,4 +150,53 @@ public class Pet {
     public void activateAbility(){
         System.out.println("");
     }
+    public Pet getShopPet(int index){
+        return shop.get(index);
+    }
+    public Perk getPerk(){
+        return perk;
+    }
+    public void setPerk(Perk newPerk){
+        perk = newPerk;
+    }
+    public void addTierOne(Pet pet){
+        tierOnes.add(pet);
+    }
+    public void addTierTwo(Pet pet){
+        tierTwos.add(pet);
+    }
+    public void addTierThree(Pet pet){
+        tierThrees.add(pet);
+    }
+    public void addTierFour(Pet pet){
+        tierFours.add(pet);
+    }
+    public void addTierFive(Pet pet){
+        tierFives.add(pet);
+    }
+    public void addTierSix(Pet pet){
+        tierSixes.add(pet);
+    }
+    public void addShopTier(ArrayList<Pet> newTier){
+        shop.addAll(newTier);
+    }
+    public ArrayList<Pet> getTierOnes(){
+        return tierOnes;
+    }
+    public ArrayList<Pet> getTierTwos(){
+        return tierTwos;
+    }
+    public ArrayList<Pet> getTierThrees(){
+        return tierThrees;
+    }
+    public ArrayList<Pet> getTierFours(){
+        return tierFours;
+    }
+    public ArrayList<Pet> getTierFives(){
+        return tierFives;
+    }
+    public ArrayList<Pet> getTierSixes(){
+        return tierSixes;
+    }
+
 }

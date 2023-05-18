@@ -32,4 +32,8 @@ public class Food {
     public String toString(){
         return name + ", gives " + getAttack() + "/" + getHealth() + ".";
     }
+    public void buyFood(Pet pet, Food food){
+        pet.addAttack(food.getAttack());
+        pet.addHealth(food.getHealth());
+    }
 }
