@@ -26,6 +26,7 @@ public class Pet {
     private boolean hurt;
     private int position;
     private Perk perk;
+    private int gold = 10;
 
     public Pet(String name, int level, int tier, int attack, int health, String ability, String abilityTime){
         this.name = name;
@@ -80,6 +81,17 @@ public class Pet {
     public void sell(Pet pet){
         team.remove(pet);
         sell = true;
+        gold += level;
+    }
+    public void buy(Pet pet, int shopPosition){
+        team.add(pet);
+        gold -= cost;
+    }
+    public void setGold(int goldSubtracted){
+        gold -= goldSubtracted;
+    }
+    public int getGold(){
+        return gold;
     }
     public boolean getSell(){
         return sell;
@@ -179,6 +191,9 @@ public class Pet {
     }
     public void addShopTier(ArrayList<Pet> newTier){
         shop.addAll(newTier);
+    }
+    public void freeze(Pet shopPet){
+
     }
     public ArrayList<Pet> getTierOnes(){
         return tierOnes;

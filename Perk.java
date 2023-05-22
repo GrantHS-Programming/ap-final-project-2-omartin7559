@@ -1,15 +1,15 @@
 public class Perk {
     private String name;
     private String ability;
-    private int numUses;
+    private int numUsesInBattle;
     private int damageAdded;
     private int damageReduced;
     private int tier;
     private int cost;
-    public Perk(String name, String ability, int numUses, int damageAdded, int damageReduced, int tier){
+    public Perk(String name, String ability, int numUsesInBattle, int damageAdded, int damageReduced, int tier){
         this.name = name;
         this.ability = ability;
-        this.numUses = numUses;
+        this.numUsesInBattle = numUsesInBattle;
         this.damageAdded = damageAdded;
         this.damageReduced = damageReduced;
         this.tier = tier;
@@ -19,7 +19,7 @@ public class Perk {
         return ability;
     }
     public int getNumUses(){
-        return numUses;
+        return numUsesInBattle;
     }
     public int getTier(){
         return tier;
@@ -44,5 +44,8 @@ public class Perk {
     }
     public void addPerk(Pet pet, Perk perk){
         pet.setPerk(perk);
+    }
+    public void activatePerk(Pet pet){
+
     }
 }
