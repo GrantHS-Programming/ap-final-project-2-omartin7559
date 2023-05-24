@@ -1,10 +1,68 @@
+import java.util.ArrayList;
+
 public class Food {
+    private ArrayList<Food> shopFoods = new ArrayList<>();
+    private ArrayList<Food> tierOnes = new ArrayList<>();
+    private ArrayList<Food> tierTwos = new ArrayList<>();
+    private ArrayList<Food> tierThrees = new ArrayList<>();
+    private ArrayList<Food> tierFours = new ArrayList<>();
+    private ArrayList<Food> tierFives = new ArrayList<>();
+    private ArrayList<Food> tierSixes = new ArrayList<>();
     private String name;
     private int tier;
     private int attack;
     private int health;
     private int cost;
     private int targets;
+    public void addShopFood(Food food){
+        shopFoods.add(food);
+    }
+    public void addTierOne(Food food){
+        tierOnes.add(food);
+    }
+    public void addTierTwo(Food food){
+        tierTwos.add(food);
+    }
+    public void addTierThree(Food food){
+        tierThrees.add(food);
+    }
+    public void addTierFour(Food food){
+        tierFours.add(food);
+    }
+    public void addTierFive(Food food){
+        tierFives.add(food);
+    }
+    public void addTierSix(Food food){
+        tierSixes.add(food);
+    }
+    public ArrayList<Food> getTierOnes(){
+        return tierOnes;
+    }
+    public ArrayList<Food> getTierTwos(){
+        return tierTwos;
+    }
+    public ArrayList<Food> getTierThrees(){
+        return tierThrees;
+    }
+    public ArrayList<Food> getTierFours(){
+        return tierFours;
+    }
+    public ArrayList<Food> getTierFives(){
+        return tierFives;
+    }
+    public ArrayList<Food> getTierSixes(){
+        return tierSixes;
+    }
+
+    public ArrayList<Food> getShopFood() {
+        return shopFoods;
+    }
+    public Food getShopFood(int shopPosition){
+        return shopFoods.get(shopPosition);
+    }
+    public void addShopTier(ArrayList<Food> newShopFoods){
+        shopFoods.addAll(newShopFoods);
+    }
     public Food(String name, int tier, int attack, int health, int targets){
         this.name = name;
         this.tier = tier;

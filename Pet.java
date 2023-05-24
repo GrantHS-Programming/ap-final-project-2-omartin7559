@@ -27,6 +27,7 @@ public class Pet {
     private int position;
     private Perk perk;
     private int gold = 10;
+    private int teamIndex;
 
     public Pet(String name, int level, int tier, int attack, int health, String ability, String abilityTime){
         this.name = name;
@@ -40,6 +41,12 @@ public class Pet {
         this.abilityTime = abilityTime;
 
 
+    }
+    public void setTeamIndex(Pet pet, int location){
+        team.add(location,pet);
+    }
+    public int getTeamIndex(){
+        return teamIndex;
     }
     public int getCost(){
         return cost;
