@@ -24,6 +24,9 @@ public class Perk {
         this.tier = tier;
         cost = 3;
     }
+    public void addShopTier(ArrayList<Perk> newPerks){
+        shopPerks.addAll(newPerks);
+    }
     public void addShopFood(Perk perk){
         shopPerks.add(perk);
     }

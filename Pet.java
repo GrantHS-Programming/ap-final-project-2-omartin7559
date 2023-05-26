@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Pet {
     private ArrayList<Pet> team = new ArrayList<>();
+    private ArrayList<Pet> enemyTeam = new ArrayList<>();
     private ArrayList<Pet> shop = new ArrayList<>();
     private ArrayList<Pet> tierOnes = new ArrayList<>();
     private ArrayList<Pet> tierTwos = new ArrayList<>();
@@ -10,7 +11,7 @@ public class Pet {
     private ArrayList<Pet> tierFives = new ArrayList<>();
     private ArrayList<Pet> tierSixes = new ArrayList<>();
     private String ability;
-    private int level;
+    private static int level;
     private String name;
     private int cost;
     private int sellValue;
@@ -41,6 +42,15 @@ public class Pet {
         this.abilityTime = abilityTime;
 
 
+    }
+    public static void setLevel(int newLevel){
+        level = newLevel;
+    }
+    public ArrayList<Pet> getEnemyTeam(){
+        return enemyTeam;
+    }
+    public void addEnemy(Pet pet){
+        enemyTeam.add(pet);
     }
     public void setTeamIndex(Pet pet, int location){
         team.add(location,pet);

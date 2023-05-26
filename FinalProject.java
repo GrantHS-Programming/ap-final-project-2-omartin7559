@@ -14,19 +14,21 @@ public class FinalProject {
     static Cricket cricket = new Cricket("Cricket", 1, 1, 1, 2, "Faint: Summon a 1/1 zombie cricket.", "faint");
     static Bluebird bluebird = new Bluebird("Bluebird", 1, 1, 2, 1, "End Turn: Give one random friend +1 attack.", "end turn");
     static Duck duck = new Duck("Duck", 1, 1, 2, 3, "Sell: Give shop pets +1 health.", "sell");
-    static Stork stork = new Stork("Stork",1,2,1,1,"Faint: Summon a random tier 3 pet.", "faint");
+    static Stork stork = new Stork("Stork",1,3,3,3,"Faint: Summon a random tier 3 pet.", "faint");
     static Peacock peacock = new Peacock("Peacock",1,2,2,5,"Hurt: Gain +4 attack.","hurt");
     static Flamingo flamingo = new Flamingo("Flamingo",1,2,4,2,"Faint: Give the two friends behind +1/+1.","faint");
+    static Spider spider = new Spider("Spider",1,2,2,2,"Faint: Summon one random tier two pet.", "faint");
 
     //foods
-    static Food food = new Food("",0,0,0,0);
-    static Food apple = new Food("Apple",1,1,1,1);
-    static Food broccoli = new Food("Broccoli",2,-1,3,1);
-    static Food salad = new Food("Salad",3,1,1,2);
-    static Food pear = new Food("Pear",4,2,2,1);
-    static Food sushi = new Food("Sushi",5,1,1,3);
-    static Food pizza = new Food("Pizza",6,2,2,2);
-    static Food chicken = new Food("Chicken",6,3,3,1);
+    static Food food = new Food("",0,0,0,0,"");
+    static Food apple = new Food("Apple",1,1,1,1,"Give one pet +1/+1.");
+    static Food broccoli = new Food("Broccoli",2,-1,3,1,"Give one pet -1/+3.");
+    static Food salad = new Food("Salad",3,1,1,2,"Give two random pets +1/+1.");
+    static Food pear = new Food("Pear",4,2,2,1,"Give one pet +2/+2.");
+    static CannedFood cannedFood = new CannedFood("Canned Food",4,1,1,0,"Give shop pets +1/+1.");
+    static Food sushi = new Food("Sushi",5,1,1,3,"Give three random pets +1/+1.");
+    static Food pizza = new Food("Pizza",6,2,2,2,"Give two random pets +2/+2.");
+    static Food chicken = new Food("Chicken",6,3,3,1,"Give one pet +3/+3.");
 
     //perks
     static Perk perk = new Perk("","",0,0,0,0);
@@ -54,6 +56,8 @@ public class FinalProject {
     }
     public static void startTurn(){
         pet.addShopTier(pet.getTierOnes());
+        food.addShopTier(food.getTierOnes());
+        perk.addShopTier(perk.getTierOnes());
         turn++;
         if(turn % 2 == 1 && petTier < 6){
             petTier++;
@@ -85,8 +89,10 @@ public class FinalProject {
         pet.setGold(shop.get(shopPosition).getCost());
     }
     public static void roll(){
+        pet.setGold(1);
         shop.clear();
         foodShop.clear();
+        perkShop.clear();
         //pets
         pet.addTierOne(ant);
         pet.addTierOne(cricket);
@@ -94,11 +100,13 @@ public class FinalProject {
         pet.addTierOne(duck);
         pet.addTierTwo(stork);
         pet.addTierTwo(peacock);
+        pet.addTierTwo(flamingo);
         //foods
         food.addTierOne(apple);
         food.addTierTwo(broccoli);
         food.addTierThree(salad);
         food.addTierFour(pear);
+        food.addTierFour(cannedFood);
         food.addTierFive(sushi);
         food.addTierSix(pizza);
         food.addTierSix(chicken);
@@ -143,7 +151,17 @@ public class FinalProject {
                 System.out.println(pet.getTeam());
             }
             else if(myScanner.next().equals("sell")){
+                System.out.println("Which pet would you like to sell? ");
+                String pet1 = myScanner.next();
+                for(int i = 0; i < pet.getTeam().size(); i++){
+                    if(pet.getTeam().get(i).getName().equals(pet1)){
+                        pet.sell(pet.getTeam().get(i));
+                    }
+                }
 
+            }
+            else if(myScanner.next().equals("end turn")){
+                endTurn();
             }
         }
     }

@@ -14,6 +14,7 @@ public class Food {
     private int health;
     private int cost;
     private int targets;
+    private String ability;
     public void addShopFood(Food food){
         shopFoods.add(food);
     }
@@ -60,15 +61,20 @@ public class Food {
     public Food getShopFood(int shopPosition){
         return shopFoods.get(shopPosition);
     }
+    public String getAbility(){
+        return ability;
+    }
+
     public void addShopTier(ArrayList<Food> newShopFoods){
         shopFoods.addAll(newShopFoods);
     }
-    public Food(String name, int tier, int attack, int health, int targets){
+    public Food(String name, int tier, int attack, int health, int targets, String ability){
         this.name = name;
         this.tier = tier;
         this.attack = attack;
         this.health = health;
         this.targets = targets;
+        this.ability = ability;
         cost = 3;
     }
     public void buyFoodMultipleTargets(Food food){
