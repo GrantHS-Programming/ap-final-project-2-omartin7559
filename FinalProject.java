@@ -18,6 +18,9 @@ public class FinalProject {
     static Peacock peacock = new Peacock("Peacock",1,2,2,5,"Hurt: Gain +4 attack.","hurt");
     static Flamingo flamingo = new Flamingo("Flamingo",1,2,4,2,"Faint: Give the two friends behind +1/+1.","faint");
     static Spider spider = new Spider("Spider",1,2,2,2,"Faint: Summon one random tier two pet.", "faint");
+    static Puppy puppy = new Puppy("Puppy",1,3,1,3,"End Turn: if you have 2+ gold, gain +2/+1.", "end turn");
+    static Giraffe giraffe = new Giraffe("Giraffe",1,3,1,3,"End Turn: Give the pet ahead +1/+1.", "end turn");
+    static Camel camel = new Camel("Camel",1,3,2,6,"Hurt: Give friend behind +2/+2.", "hurt");
 
     //foods
     static Food food = new Food("",0,0,0,0,"");
@@ -101,6 +104,10 @@ public class FinalProject {
         pet.addTierTwo(stork);
         pet.addTierTwo(peacock);
         pet.addTierTwo(flamingo);
+        pet.addTierTwo(spider);
+        pet.addTierThree(puppy);
+        pet.addTierThree(giraffe);
+        pet.addTierThree(camel);
         //foods
         food.addTierOne(apple);
         food.addTierTwo(broccoli);

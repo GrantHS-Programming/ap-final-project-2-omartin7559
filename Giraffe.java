@@ -3,6 +3,11 @@ public class Giraffe extends Pet {
         super(name, level, tier, attack, health, ability, abilityTime);
     }
     public void activateAbility(){
-        if(endTurn())
+        if(getEndTurn()){
+            if(super.getTeam().get(getPosition()-1) != null){
+                super.getTeam().get(getPosition()-1).addAttack(getLevel());
+                super.getTeam().get(getPosition()-1).addHealth(getLevel());
+            }
+        }
     }
 }

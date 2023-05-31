@@ -21,10 +21,11 @@ public class Pet {
     private String abilityTime;
     private boolean sell;
     private boolean endTurn ;
-    private boolean startTurn;
+    private boolean startBattle;
     private boolean faint;
     private boolean beforeAttack;
     private boolean hurt;
+
     private int position;
     private Perk perk;
     private int gold = 10;
@@ -43,8 +44,39 @@ public class Pet {
 
 
     }
-    public static void setLevel(int newLevel){
+    public void setLevel(int newLevel){
         level = newLevel;
+    }
+    public Pet levelUp(Pet pet){
+        pet.setLevel(level+1);
+        int levelPet = (int) (Math.random()*)
+    }
+    public void attack(){
+        if(getEnemyTeam().get(position).getAbilityTime().equals("before attack")){
+            getEnemyTeam().get(position).activateAbility();
+        }
+        if(abilityTime.equals("before attack")){
+            activateAbility();
+        }
+        getEnemyTeam().get(position).takeDamage(attack);
+        getTeam().get(position).takeDamage(getEnemyTeam().get(0).getAttack());
+        if(getEnemyTeam().get(position).getHealth() <= 0){
+            setFaint();
+            if(getEnemyTeam().get(position).getAbilityTime().equals("faint")){
+                getEnemyTeam().get(position).activateAbility();
+            }
+            enemyTeam.remove(0);
+        }
+        if(getHealth() <= 0){
+            setFaint();
+            if(abilityTime.equals("faint")){
+                activateAbility();
+            }
+            team.remove(position);
+        }
+    }
+    public void takeDamage(int damage){
+        health = health - damage;
     }
     public ArrayList<Pet> getEnemyTeam(){
         return enemyTeam;
@@ -119,11 +151,11 @@ public class Pet {
     public boolean getEndTurn(){
         return endTurn;
     }
-    public void setStartTurn(){
-        startTurn = true;
+    public void setStartBattle(){
+        startBattle = true;
     }
-    public boolean getStartTurn(){
-        return startTurn;
+    public boolean getStartBattle(){
+        return startBattle;
     }
     public void setFaint(){
         faint = true;
