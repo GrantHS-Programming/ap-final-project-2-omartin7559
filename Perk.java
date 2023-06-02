@@ -8,6 +8,7 @@ public class Perk {
     private ArrayList<Perk> tierFours = new ArrayList<>();
     private ArrayList<Perk> tierFives = new ArrayList<>();
     private ArrayList<Perk> tierSixes = new ArrayList<>();
+    private String timeUsed;
     private String name;
     private String ability;
     private int numUsesInBattle;
@@ -15,7 +16,7 @@ public class Perk {
     private int damageReduced;
     private int tier;
     private int cost;
-    public Perk(String name, String ability, int numUsesInBattle, int damageAdded, int damageReduced, int tier){
+    public Perk(String name, String ability, int numUsesInBattle, int damageAdded, int damageReduced, int tier, String timeUsed){
         this.name = name;
         this.ability = ability;
         this.numUsesInBattle = numUsesInBattle;
@@ -23,9 +24,13 @@ public class Perk {
         this.damageReduced = damageReduced;
         this.tier = tier;
         cost = 3;
+        this.timeUsed = timeUsed;
     }
     public void addShopTier(ArrayList<Perk> newPerks){
         shopPerks.addAll(newPerks);
+    }
+    public String getTimeUsed(){
+        return timeUsed;
     }
     public void addShopFood(Perk perk){
         shopPerks.add(perk);
@@ -103,7 +108,7 @@ public class Perk {
     public void addPerk(Pet pet, Perk perk){
         pet.setPerk(perk);
     }
-    public void activatePerk(Pet pet){
+    public void activatePerk(){
 
     }
 }

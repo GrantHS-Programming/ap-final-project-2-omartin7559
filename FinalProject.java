@@ -2,14 +2,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FinalProject {
+    static Pet pet = new Pet("", 0, 0, 0, 0, "","");
     static Scanner myScanner = new Scanner(System.in);
     static ArrayList<Pet> shop = new ArrayList<>();
     static ArrayList<Food> foodShop = new ArrayList<>();
     static ArrayList<Perk> perkShop = new ArrayList<>();
-    static int petTier = 1;
-    static int turn = 0;
+    static int petTier = pet.getPetTier();
+    static int turn = pet.getTurn();
     //pets
-    static Pet pet = new Pet("", 0, 0, 0, 0, "","");
     static Ant ant = new Ant("Ant", 1, 1, 2, 1, "Faint: Give one random friend +2/+1.", "faint");
     static Cricket cricket = new Cricket("Cricket", 1, 1, 1, 2, "Faint: Summon a 1/1 zombie cricket.", "faint");
     static Bluebird bluebird = new Bluebird("Bluebird", 1, 1, 2, 1, "End Turn: Give one random friend +1 attack.", "end turn");
@@ -21,6 +21,7 @@ public class FinalProject {
     static Puppy puppy = new Puppy("Puppy",1,3,1,3,"End Turn: if you have 2+ gold, gain +2/+1.", "end turn");
     static Giraffe giraffe = new Giraffe("Giraffe",1,3,1,3,"End Turn: Give the pet ahead +1/+1.", "end turn");
     static Camel camel = new Camel("Camel",1,3,2,6,"Hurt: Give friend behind +2/+2.", "hurt");
+    static Doberman doberman = new Doberman("Doberman",1,4,4,5,"If this is the lowest tier pet: Gain coconut and +5/+5.", "start battle");
 
     //foods
     static Food food = new Food("",0,0,0,0,"");
@@ -34,11 +35,15 @@ public class FinalProject {
     static Food chicken = new Food("Chicken",6,3,3,1,"Give one pet +3/+3.");
 
     //perks
-    static Perk perk = new Perk("","",0,0,0,0);
-    static Honey honey = new Honey("Honey","Summon a 1/1 honey bee on faint",1, 0, 0, 1);
-    static Meat meat = new Meat("Meat","Add +4 attack while pet has this perk",5,4,0,2);
-    static Cucumber cucumber = new Cucumber("Cucumber","Pet gains +1 health on end turn",0,0,0,3);
-    static Croissant croissant = new Croissant("Croissant","Pet gains +1 attack on end turn",0,0,0,3);
+    static Perk perk = new Perk("","",0,0,0,0,"");
+    static Honey honey = new Honey("Honey","Summon a 1/1 honey bee on faint",1, 0, 0, 1,"faint");
+    static Meat meat = new Meat("Meat","Add +4 attack while pet has this perk",5,4,0,2,"attack");
+    static Cucumber cucumber = new Cucumber("Cucumber","Pet gains +1 health on end turn",0,0,0,3,"end turn");
+    static Croissant croissant = new Croissant("Croissant","Pet gains +1 attack on end turn",0,0,0,3,"end turn");
+    static Perk garlic = new Perk("Garlic","Pet take 2 less damage",5, 0, 2, 3, "attack");
+    static Perk melon = new Perk("Melon","Pet takes 20 less damage once",1,0,20,6,"attack");
+    static Perk coconut = new Perk("Coconut","Pet takes 100% less damage, once",1,0,100,0,"attack");
+
 
 
     public static void main(String[] args) {
@@ -61,9 +66,7 @@ public class FinalProject {
         pet.addShopTier(pet.getTierOnes());
         food.addShopTier(food.getTierOnes());
         perk.addShopTier(perk.getTierOnes());
-        turn++;
         if(turn % 2 == 1 && petTier < 6){
-            petTier++;
             if(petTier == 2){
                 pet.addShopTier(pet.getTierTwos());
                 food.addShopTier(food.getTierTwos());
@@ -138,11 +141,17 @@ public class FinalProject {
         System.out.print(foodShop);
         System.out.print(perkShop);
     }
+    public static void battle(){
+        System.out.println(pet.getTeam());
+        System.out.println(pet.getEnemyTeam());
+
+    }
     public static void game(){
         myScanner.useDelimiter("\\n");
         String quit = "";
         roll();
         while(!quit.equals("quit")) {
+            startTurn();
             System.out.println("What would you like to do? (roll, buy, sell, end turn, quit):  ");
             if(myScanner.next().equals("quit")){
                 System.out.println("you quit the game.");
@@ -168,7 +177,9 @@ public class FinalProject {
 
             }
             else if(myScanner.next().equals("end turn")){
+                pet.increaseTurn();
                 endTurn();
+                battle();
             }
         }
     }

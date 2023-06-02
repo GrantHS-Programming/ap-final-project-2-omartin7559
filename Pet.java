@@ -25,7 +25,9 @@ public class Pet {
     private boolean faint;
     private boolean beforeAttack;
     private boolean hurt;
-
+    private int petTier = 1;
+    private int turn;
+    private int numAttacks;
     private int position;
     private Perk perk;
     private int gold = 10;
@@ -44,12 +46,40 @@ public class Pet {
 
 
     }
+    public int getTurn(){
+        return turn;
+    }
+    public int getPetTier(){
+        return petTier;
+    }
+    public void increaseTurn(){
+        turn++;
+        if(turn < 11 && turn % 2 != 0){
+            petTier++;
+        }
+    }
     public void setLevel(int newLevel){
         level = newLevel;
     }
-    public Pet levelUp(Pet pet){
+    public void levelUp(Pet pet){
         pet.setLevel(level+1);
-        int levelPet = (int) (Math.random()*)
+        if(petTier == 2) {
+            int levelPet = (int) (Math.random() * tierThrees.size());
+            shop.add(tierThrees.get(levelPet));
+        }
+        if(petTier == 3) {
+            int levelPet = (int) (Math.random() * tierFours.size());
+            shop.add(tierFours.get(levelPet));
+        }
+        if(petTier == 4) {
+            int levelPet = (int) (Math.random() * tierFives.size());
+            shop.add(tierFives.get(levelPet));
+        }
+        if(petTier == 5) {
+            int levelPet = (int) (Math.random() * tierSixes.size());
+            shop.add(tierSixes.get(levelPet));
+        }
+
     }
     public void attack(){
         if(getEnemyTeam().get(position).getAbilityTime().equals("before attack")){
@@ -58,8 +88,55 @@ public class Pet {
         if(abilityTime.equals("before attack")){
             activateAbility();
         }
-        getEnemyTeam().get(position).takeDamage(attack);
-        getTeam().get(position).takeDamage(getEnemyTeam().get(0).getAttack());
+        if(getEnemyTeam().get(position).getPerk().getName().equals("Melon")){
+            if(attack <=20){
+                getEnemyTeam().get(position).takeDamage(0);
+            }
+            else {
+                getEnemyTeam().get(position).takeDamage(attack - 20);
+            }
+        }
+        else if(getEnemyTeam().get(position).getPerk().getName().equals("Garlic")) {
+            if(attack <= 2){
+                getEnemyTeam().get(position).takeDamage(1);
+            }
+            else {
+                getEnemyTeam().get(position).takeDamage(attack - 2);
+            }
+        }
+        else if(getEnemyTeam().get(position).getPerk().getName().equals("Coconut")) {
+            getEnemyTeam().get(position).takeDamage(0);
+        }
+        else{
+            getEnemyTeam().get(position).takeDamage(attack);
+        }
+
+        if(getTeam().get(position).getPerk().getName().equals("Melon")){
+            if(attack <=20){
+                getTeam().get(position).takeDamage(0);
+            }
+            else {
+                getTeam().get(position).takeDamage(attack - 20);
+            }
+        }
+        else if(getTeam().get(position).getPerk().getName().equals("Garlic")) {
+            if(attack <= 2){
+                getTeam().get(position).takeDamage(1);
+            }
+            else {
+                getTeam().get(position).takeDamage(attack - 2);
+            }
+        }
+        else if(getTeam().get(position).getPerk().getName().equals("Coconut")) {
+            getTeam().get(position).takeDamage(0);
+        }
+        else{
+            getTeam().get(position).takeDamage(attack);
+        }
+
+
+
+
         if(getEnemyTeam().get(position).getHealth() <= 0){
             setFaint();
             if(getEnemyTeam().get(position).getAbilityTime().equals("faint")){
@@ -74,6 +151,15 @@ public class Pet {
             }
             team.remove(position);
         }
+        numAttacks++;
+    }
+    public void breakPerk(Pet pet){
+        if(pet.getPerk().getNumUses() == 1 && pet.getNumAttacks() >= 1){
+            pet.setPerk(null);
+        }
+    }
+    public int getNumAttacks(){
+        return numAttacks;
     }
     public void takeDamage(int damage){
         health = health - damage;
