@@ -59,7 +59,10 @@ public class Food {
         return shopFoods;
     }
     public Food getShopFood(int shopPosition){
-        return shopFoods.get(shopPosition);
+        if(shopPosition < shopFoods.size()) {
+            return shopFoods.get(shopPosition);
+        }
+        return null;
     }
     public String getAbility(){
         return ability;

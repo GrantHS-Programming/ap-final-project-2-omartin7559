@@ -21,7 +21,11 @@ public class FinalProject {
     static Puppy puppy = new Puppy("Puppy",1,3,1,3,"End Turn: if you have 2+ gold, gain +2/+1.", "end turn");
     static Giraffe giraffe = new Giraffe("Giraffe",1,3,1,3,"End Turn: Give the pet ahead +1/+1.", "end turn");
     static Camel camel = new Camel("Camel",1,3,2,6,"Hurt: Give friend behind +2/+2.", "hurt");
-    static Doberman doberman = new Doberman("Doberman",1,4,4,5,"If this is the lowest tier pet: Gain coconut and +5/+5.", "start battle");
+    static Doberman doberman = new Doberman("Doberman",1,4,4,5,"Start battle: If this is the lowest tier pet, gain coconut and +5/+5.", "start battle");
+    static Bison bison = new Bison("Bison",1,4,4,4,"End turn: If this has a level 3 friend, gain +2/+2.", "end turn");
+    static Monkey monkey = new Monkey("Monkey",1,5,1,2,"End turn: Give front pet +2/+3.", "end turn");
+    static Crocodile crocodile = new Crocodile("Crocodile",1,5,8,4,"Start battle: Deal 8 damage to the last enemy.","start battle");
+    static Dolphin dolphin = new Dolphin("Dolphin",1,3,4,3,"Start battle: Deal 4 damage to the first enemy.", "start battle");
 
     //foods
     static Food food = new Food("",0,0,0,0,"");
@@ -51,6 +55,8 @@ public class FinalProject {
         pet.addShopPet(ant);
         pet.addShopPet(bluebird);
         pet.addShopPet(duck);
+        food.addShopFood(apple);
+        perk.addShopPerk(honey);
         roll();
         startTurn();
         game();
@@ -111,6 +117,11 @@ public class FinalProject {
         pet.addTierThree(puppy);
         pet.addTierThree(giraffe);
         pet.addTierThree(camel);
+        pet.addTierThree(dolphin);
+        pet.addTierFour(doberman);
+        pet.addTierFour(bison);
+        pet.addTierFive(monkey);
+        pet.addTierFive(crocodile);
         //foods
         food.addTierOne(apple);
         food.addTierTwo(broccoli);
@@ -125,6 +136,8 @@ public class FinalProject {
         perk.addTierTwo(meat);
         perk.addTierThree(cucumber);
         perk.addTierThree(croissant);
+        perk.addTierThree(garlic);
+        perk.addTierSix(melon);
         for(int a = 0; a < 3; a++) {
             int pets = (int) (Math.random() * pet.getShop().size());
             shop.add(pet.getShopPet(pets));

@@ -32,7 +32,7 @@ public class Perk {
     public String getTimeUsed(){
         return timeUsed;
     }
-    public void addShopFood(Perk perk){
+    public void addShopPerk(Perk perk){
         shopPerks.add(perk);
     }
     public void addTierOne(Perk perk){
@@ -76,7 +76,10 @@ public class Perk {
         return shopPerks;
     }
     public Perk getShopPerk(int shopPosition){
-        return shopPerks.get(shopPosition);
+        if(shopPosition < shopPerks.size()) {
+            return shopPerks.get(shopPosition);
+        }
+        return null;
     }
     public String getAbility(){
         return ability;
